@@ -38,3 +38,9 @@ def test_preprocessor_repr(log):
     assert "BP" in r
 
     log.info("repr verified")
+
+
+def test_snirf_parser(log):
+    log.debug("Parsing .SNIRF")
+
+    log.info("Sucessfully parsed .SNIRF")
