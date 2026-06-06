@@ -42,5 +42,5 @@ def test_preprocessor_repr(log):
 
 def test_snirf_parser(log):
     log.debug("Parsing .SNIRF")
-
+    log.error("Something went wrong!")
     log.info("Sucessfully parsed .SNIRF")
