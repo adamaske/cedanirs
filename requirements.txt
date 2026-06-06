@@ -1,0 +1,7 @@
+numpy
+xarray
+matplotlib
+cedalion
+pytest
+black
+flake8
