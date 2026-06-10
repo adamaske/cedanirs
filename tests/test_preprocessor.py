@@ -1,5 +1,13 @@
 import pytest
-from cedanirs import Preprocessor
+from cedanirs import Preprocessor, test_fun
+
+
+def test_test_fun(log):
+    x = test_fun()
+    log.info("Test Function")
+    log.debug(f"Result is {x}")
+    assert x == 14
+    log.info("Sucessfully tested")
 
 
 def test_preprocessor_defaults(log):
