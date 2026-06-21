@@ -1,13 +1,6 @@
 import pytest
-from cedanirs import Preprocessor, test_fun
 
-
-def test_test_fun(log):
-    x = test_fun()
-    log.info("Test Function")
-    log.debug(f"Result is {x}")
-    assert x == 14
-    log.info("Sucessfully tested")
+from cedanirs import Preprocessor
 
 
 def test_preprocessor_defaults(log):
@@ -21,8 +14,6 @@ def test_preprocessor_defaults(log):
     assert pp.bandpass_low == 0.01
     assert pp.bandpass_high == 0.1
 
-    log.info("Default settings verified")
-
 
 def test_preprocessor_fluent_builder(log):
     pp = Preprocessor().set_bandpass(0.02, 0.3).set_motion_correction(False)
@@ -31,8 +22,6 @@ def test_preprocessor_fluent_builder(log):
     assert pp.bandpass_low == 0.02
     assert pp.bandpass_high == 0.3
     assert pp.motion_correction is False
-
-    log.info("Fluent builder verified")
 
 
 def test_preprocessor_repr(log):
@@ -45,10 +34,11 @@ def test_preprocessor_repr(log):
     assert "HbX" in r
     assert "BP" in r
 
-    log.info("repr verified")
 
-
-def test_snirf_parser(log):
-    log.debug("Parsing .SNIRF")
-    log.error("Something went wrong!")
-    log.info("Sucessfully parsed .SNIRF")
+def test_apply_without_cedalion_is_clear():
+    """apply() must fail with an actionable error, never an import-time crash."""
+    pp = Preprocessor()
+    # Either cedalion is missing (DependencyError) or installed but the backend
+    # is not yet wired (NotImplementedError). Both are acceptable, clear errors.
+    with pytest.raises((NotImplementedError, ImportError)):
+        pp.apply(object())

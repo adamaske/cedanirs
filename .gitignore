@@ -185,3 +185,9 @@ logs/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+# Example script output
+example_output/
+example_group_output/
+
+# Don't commit binary installers
+*.exe
