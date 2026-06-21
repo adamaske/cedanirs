@@ -1,0 +1,26 @@
+======================================================================
+  Sivert writing-modality functional connectivity
+======================================================================
+  subjects   : ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6']
+  conditions : ['handwriting', 'ipad', 'keyboard', 'remarkable']
+  bandpass   : 0.01-0.1 Hz   alpha=0.05 (FDR-BH)
+
+  CHANNEL COVERAGE
+    common channels across all 6 subjects: 15 (montages differ; see loading_log.txt for per-subject counts)
+    common set: S11_D11, S14_D14, S15_D15, S1_D1, S2_D1, S2_D2, S2_D4, S3_D1, S3_D4, S5_D3, S6_D5, S7_D8, S8_D6, S8_D8, S9_D9
+
+  PER-CONDITION group connectome (one-sample HbO, FC > 0)
+    handwriting  n=6 subj, 15 ch, 69/105 edges sig
+    ipad         n=6 subj, 15 ch, 95/105 edges sig
+    keyboard     n=6 subj, 15 ch, 63/105 edges sig
+    remarkable   n=6 subj, 15 ch, 97/105 edges sig
+
+  CONDITION CONTRASTS (paired HbO)
+    handwriting vs ipad        n=6 | FDR-sig=0  uncorrected p<0.05: 1/105  (min q=0.99)
+    handwriting vs keyboard    n=6 | FDR-sig=0  uncorrected p<0.05: 0/105  (min q=0.96)
+    handwriting vs remarkable  n=6 | FDR-sig=0  uncorrected p<0.05: 3/105  (min q=0.21)
+           ipad vs keyboard    n=6 | FDR-sig=0  uncorrected p<0.05: 1/105  (min q=0.98)
+           ipad vs remarkable  n=6 | FDR-sig=0  uncorrected p<0.05: 7/105  (min q=0.25)
+       keyboard vs remarkable  n=6 | FDR-sig=0  uncorrected p<0.05: 2/105  (min q=0.22)
+
+======================================================================
