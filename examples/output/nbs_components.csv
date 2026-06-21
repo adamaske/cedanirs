@@ -1,0 +1,2 @@
+component,chromophore,n_nodes,n_edges,component_statistic,p_fwe,n_permutations,threshold,significant,nodes
+1,HbO,7,21,21.0,0.0024987506246876563,2000,3.0,True,"Ch08, Ch09, Ch10, Ch11, Ch12, Ch13, Ch14"

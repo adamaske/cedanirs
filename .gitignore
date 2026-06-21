@@ -191,3 +191,6 @@ example_group_output/
 
 # Don't commit binary installers
 *.exe
+
+# Large reference PDFs (kept locally, not in repo)
+docs/*.pdf

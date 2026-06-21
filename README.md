@@ -133,6 +133,17 @@ entire single-subject surface (`.plot`, `.significant`, graph metrics, tables)
 works on group results unchanged. See `example_group.py` for a runnable
 end-to-end demo.
 
+The whole pipeline renders to a single poster figure. Below is the committed
+output of a deterministic synthetic two-group study (16 controls vs 16 patients;
+regenerate with `python examples/generate_outputs.py`):
+
+![Group connectivity poster](examples/output/group_poster.png)
+
+Exported alongside it: [`significant_edges.csv`](examples/output/significant_edges.csv),
+[`nodal_metrics.csv`](examples/output/nodal_metrics.csv),
+[`nbs_components.csv`](examples/output/nbs_components.csv) and
+[`group_report.txt`](examples/output/group_report.txt).
+
 ## Architecture
 
 ```
