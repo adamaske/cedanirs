@@ -61,7 +61,8 @@ from .estimators.functional.spearman import SpearmanCorrelation
 from .api import connectivity
 
 # Subpackages exposed as namespaces for advanced use
-from . import graph, report, stats, tables, viz
+from . import graph, io, report, stats, tables, viz
+from .io import read_snirf, read_timeseries
 from .preprocessing import Preprocessor
 from .viz.poster import build_poster
 
@@ -76,6 +77,9 @@ __all__ = [
     "Study",
     "GroupConnectivity",
     "build_poster",
+    "read_snirf",
+    "read_timeseries",
+    "io",
     "Chromophore",
     "ConnectivityKind",
     "Domain",

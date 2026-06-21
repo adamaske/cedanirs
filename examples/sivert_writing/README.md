@@ -13,39 +13,44 @@ reports.
 ## Design
 
 - **6 subjects × 4 conditions**: handwriting, iPad, keyboard, reMarkable.
-- Multiple runs per subject/condition (24 subject–condition cells, 102 runs).
-- Already-processed HbO/HbR SNIRF, 49 long channels @ ~12.2 Hz, ~285 s each.
+- Multiple runs per subject/condition (24 subject–condition cells, ~102 runs).
+- Already-processed HbO/HbR SNIRF. The recordings are heterogeneous: sampling
+  rate varies (5–12 Hz), length varies, and each file kept a different subset of
+  source-detector channels after QC (full montage = **66** distinct pairs; 28
+  common to every subject).
 
 ## Pipeline
 
-1. Load each run (MNE), keep long channels, band-pass **0.01–0.1 Hz**.
-2. Pearson connectivity per run; average a subject's runs in **Fisher-z** space →
-   one matrix per (subject, condition).
-3. Group analyses (`cedanirs`):
+1. Read each run with cedanirs' **native h5py SNIRF reader** (`cn.read_timeseries`,
+   no MNE — the files are already HbO/HbR) and band-pass **0.01–0.1 Hz**; runs
+   shorter than 60 s are skipped.
+2. Pearson connectivity per run; **Fisher-z** average a subject's runs (union of
+   channels) → one matrix per (subject, condition).
+3. Group analyses (`cedanirs`) on the **full montage** — channels present in ≥ 50 %
+   of subjects (49 channels, 1176 edges), NaN-aware where a recording lacks one:
    - **per condition** — one-sample edgewise test (FC > 0), FDR-BH;
    - **every condition pair** — paired (within-subject) contrast, FDR-BH.
 
-Subjects' montages differ, so group tests run on the **15 channels common to all
-6 subjects** (105 edges). See [`output/summary.txt`](output/summary.txt) and
-[`output/loading_log.txt`](output/loading_log.txt).
+See [`output/summary.txt`](output/summary.txt) and
+[`output/loading_log.txt`](output/loading_log.txt) (per-run sfreq/length/channels).
 
 ## Results
 
 **Each condition has a strong, reliable group connectome** (one-sample HbO, FC > 0,
-FDR `q < 0.05`):
+FDR `q < 0.05`, 49 channels / 1176 edges):
 
 | condition   | significant edges |
 |-------------|-------------------|
-| handwriting | 69 / 105 |
-| iPad        | 95 / 105 |
-| keyboard    | 63 / 105 |
-| reMarkable  | 97 / 105 |
+| handwriting | 504 / 1176 |
+| iPad        | 1092 / 1176 |
+| keyboard    | 810 / 1176 |
+| reMarkable  | 1125 / 1176 |
 
 **No connectivity differences between writing modalities.** Every pairwise paired
-contrast yields **0** FDR-significant edges, and the *uncorrected* counts (0–7 of
-105, at or below the ~5 expected by chance) confirm this is a genuine null rather
-than low power — at this sample size, band and channel set, resting-band HbO
-connectivity does not distinguish the four input methods.
+contrast yields **0** FDR-significant edges, and the *uncorrected* counts (25–96 of
+1176, around the ~59 expected by chance) confirm this is a genuine null rather than
+low power — even on the full montage, resting-band HbO connectivity does not
+distinguish the four input methods at this sample size.
 
 ![Handwriting group connectome](output/per_condition/handwriting_poster.png)
 
@@ -60,7 +65,8 @@ connectivity does not distinguish the four input methods.
 
 ## Caveats
 
-Small sample (n = 6); 15-channel common montage limits spatial coverage; HbO
-only in the summary tables (HbR available by re-running). Treat the per-condition
+Small sample (n = 6); recordings are heterogeneous (sfreq 5–12 Hz, varying length
+and channel subsets), so per-edge subject counts vary across the montage; HbO only
+in the summary tables (HbR available by re-running). Treat the per-condition
 connectomes as descriptive and the null contrasts as "no detectable difference at
 this power", not proof of equivalence.

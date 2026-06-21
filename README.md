@@ -58,6 +58,14 @@ metrics = cn.graph.graph_metrics(m, threshold=0.3)
 print(result.report())         # human-readable text report
 ```
 
+Load straight from a `.snirf` file with the native h5py reader (no MNE needed;
+already-processed HbO/HbR files are read directly):
+
+```python
+ts = cn.read_timeseries("sub01_rest.snirf", bandpass=(0.01, 0.1))
+result = cn.connectivity(ts, method="pearson")
+```
+
 Multi-chromophore input (3-D `(chromophore, channel, time)`) yields one matrix
 per chromophore:
 
@@ -164,6 +172,7 @@ cedanirs/
     group.py              one_sample / two_sample / paired / regression / nbs
     _results.py           GroupStatResult / NBSResult
   graph/                  networkx-backed graph + topology metrics
+  io/                     native h5py SNIRF reader (read_snirf / read_timeseries)
   tables.py               significant-findings DataFrames (edges, nodes, NBS)
   viz/                    matrix heatmap (matrix.py) + build_poster (poster.py)
   report/                 text + result_report() dict; group.py for group reports

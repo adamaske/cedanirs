@@ -1,24 +1,51 @@
-handwriting  sub1   1 run(s), 49 channels
-handwriting  sub2   2 run(s), 49 channels
-handwriting  sub3   4 run(s), 25 channels
-handwriting  sub4   2 run(s), 45 channels
-handwriting  sub5   3 run(s), 49 channels
-handwriting  sub6   2 run(s), 49 channels
-ipad         sub1   1 run(s), 49 channels
-ipad         sub2   1 run(s), 49 channels
-ipad         sub3   3 run(s), 25 channels
-ipad         sub4   2 run(s), 28 channels
-ipad         sub5   3 run(s), 49 channels
-ipad         sub6   2 run(s), 49 channels
-keyboard     sub1   1 run(s), 49 channels
-keyboard     sub2   1 run(s), 49 channels
-keyboard     sub3   4 run(s), 25 channels
-keyboard     sub4   2 run(s), 45 channels
-keyboard     sub5   3 run(s), 49 channels
-keyboard     sub6   2 run(s), 49 channels
-remarkable   sub1   1 run(s), 49 channels
-remarkable   sub2   1 run(s), 49 channels
-remarkable   sub3   3 run(s), 25 channels
-remarkable   sub4   2 run(s), 28 channels
-remarkable   sub5   3 run(s), 49 channels
-remarkable   sub6   2 run(s), 49 channels
+handwriting  2025-09-26_001 sub1 handwriting_PROCESSED.snirf  49ch  3480smp  12.21Hz  285.0s USED
+handwriting  2025-10-13_001 sub2 handwriting_PROCESSED.snirf  49ch  1672smp  12.21Hz  136.9s USED
+handwriting  2025-10-13_005 sub2 handwriting_PROCESSED.snirf  49ch  1824smp  12.21Hz  149.4s USED
+handwriting  2025-10-21_001 Sub3 Handwriting_PROCESSED.snirf  48ch    93smp   5.09Hz   18.3s SKIP(short)
+handwriting  2025-10-21_005 sub3 handwriting_PROCESSED.snirf  48ch   265smp   5.09Hz   52.1s SKIP(short)
+handwriting  2025-10-21_009 sub3 handwriting_PROCESSED.snirf  49ch  1884smp  12.21Hz  154.3s USED
+handwriting  2025-10-21_013 sub3 handwriting_PROCESSED.snirf  49ch  1706smp  12.21Hz  139.7s USED
+handwriting  2025-11-25_001 sub4 handwriting_PROCESSED.snirf  45ch   509smp   5.09Hz  100.1s USED
+handwriting  2025-11-25_005 sub4 handwriting_PROCESSED.snirf  45ch   340smp   5.09Hz   66.8s USED
+handwriting  2026-01-15_001 sub5 handwriting_PROCESSED.snirf  49ch  1914smp  12.21Hz  156.8s USED
+handwriting  2026-01-15_005 sub5 handwriting_PROCESSED.snirf  49ch  1887smp  12.21Hz  154.5s USED
+handwriting  2026-01-15_009 sub5 handwriting_PROCESSED.snirf  49ch  2178smp  12.21Hz  178.4s USED
+handwriting  2026-03-25_001 sub6 handwriting_PROCESSED.snirf  49ch  1721smp  12.21Hz  140.9s USED
+handwriting  2026-03-25_005 sub6 handwriting_PROCESSED.snirf  49ch  3990smp  12.21Hz  326.8s USED
+ipad         2025-09-26_003 sub1 ipad_PROCESSED.snirf         49ch  2342smp  12.21Hz  191.8s USED
+ipad         2025-10-13_003 sub2 ipad_PROCESSED.snirf         49ch  2583smp  12.21Hz  211.5s USED
+ipad         2025-10-21_003 sub3 ipad_PROCESSED.snirf         48ch   149smp   5.09Hz   29.3s SKIP(short)
+ipad         2025-10-21_007 sub3 ipad_PROCESSED.snirf         49ch  2222smp  12.21Hz  182.0s USED
+ipad         2025-10-21_011 sub3 ipad_PROCESSED.snirf         49ch  1855smp  12.21Hz  151.9s USED
+ipad         2025-11-25_003 sub4 ipad_PROCESSED.snirf         45ch   689smp   5.09Hz  135.5s USED
+ipad         2025-11-25_007 sub4 ipad_PROCESSED.snirf         49ch  1748smp  12.21Hz  143.2s USED
+ipad         2026-01-15_003 sub5 ipad_PROCESSED.snirf         49ch  2084smp  12.21Hz  170.7s USED
+ipad         2026-01-15_007 sub5 ipad_PROCESSED.snirf         49ch  2029smp  12.21Hz  166.2s USED
+ipad         2026-01-15_011 sub5 ipad_PROCESSED.snirf         49ch  2008smp  12.21Hz  164.5s USED
+ipad         2026-03-25_003 sub6 ipad_PROCESSED.snirf         49ch  1771smp  12.21Hz  145.0s USED
+ipad         2026-03-25_007 sub6 ipad_PROCESSED.snirf         49ch  1680smp  12.21Hz  137.6s USED
+keyboard     2025-09-26_002 sub1 Keyboard_PROCESSED.snirf     49ch  2912smp  12.21Hz  238.5s USED
+keyboard     2025-10-13_002 sub2 keyboard_PROCESSED.snirf     49ch  1815smp  12.21Hz  148.6s USED
+keyboard     2025-10-21_002 sub3 Keyboard_PROCESSED.snirf     48ch    60smp   5.09Hz   11.8s SKIP(short)
+keyboard     2025-10-21_006 sub3 keyboard_PROCESSED.snirf     48ch   208smp   5.09Hz   40.9s SKIP(short)
+keyboard     2025-10-21_010 sub3 keyboard_PROCESSED.snirf     49ch  2140smp  12.21Hz  175.3s USED
+keyboard     2025-10-21_014 sub3 keyboard_PROCESSED.snirf     49ch  1881smp  12.21Hz  154.1s USED
+keyboard     2025-11-25_002 sub4 keyboard_PROCESSED.snirf     45ch  1001smp   5.09Hz  196.8s USED
+keyboard     2025-11-25_006 sub4 keyboard_PROCESSED.snirf     45ch    89smp   5.09Hz   17.5s SKIP(short)
+keyboard     2026-01-15_002 sub5 keyboard_PROCESSED.snirf     49ch  3162smp  12.21Hz  259.0s USED
+keyboard     2026-01-15_006 sub5 keyboard_PROCESSED.snirf     49ch  2517smp  12.21Hz  206.1s USED
+keyboard     2026-01-15_010 sub5 keyboard_PROCESSED.snirf     49ch  2443smp  12.21Hz  200.1s USED
+keyboard     2026-03-25_002 sub6 keyboard_PROCESSED.snirf     49ch  1751smp  12.21Hz  143.4s USED
+keyboard     2026-03-25_006 sub6 keyboard_PROCESSED.snirf     49ch  1753smp  12.21Hz  143.6s USED
+remarkable   2025-09-26_004 sub1 Remarkable_PROCESSED.snirf   49ch  2176smp  12.21Hz  178.2s USED
+remarkable   2025-10-13_004 sub2 remarkable_PROCESSED.snirf   49ch  1876smp  12.21Hz  153.6s USED
+remarkable   2025-10-21_004 sub3 Remarkable_PROCESSED.snirf   48ch   238smp   5.09Hz   46.8s SKIP(short)
+remarkable   2025-10-21_008 sub3 remarkable_PROCESSED.snirf   49ch  2455smp  12.21Hz  201.1s USED
+remarkable   2025-10-21_012 sub3 remarkable_PROCESSED.snirf   49ch  1875smp  12.21Hz  153.6s USED
+remarkable   2025-11-25_004 sub4 remarkable_PROCESSED.snirf   45ch   659smp   5.09Hz  129.6s USED
+remarkable   2025-11-25_008 sub4 remarkable_PROCESSED.snirf   49ch  1914smp  12.21Hz  156.8s USED
+remarkable   2026-01-15_004 sub5 remarkable_PROCESSED.snirf   49ch  2314smp  12.21Hz  189.5s USED
+remarkable   2026-01-15_008 sub5 remarkable_PROCESSED.snirf   49ch  2095smp  12.21Hz  171.6s USED
+remarkable   2026-01-15_012 sub5 remarkable_PROCESSED.snirf   49ch  1923smp  12.21Hz  157.5s USED
+remarkable   2026-03-25_004 sub6 remarkable_PROCESSED.snirf   49ch  1816smp  12.21Hz  148.7s USED
+remarkable   2026-03-25_008 sub6 remarkable_PROCESSED.snirf   49ch  1818smp  12.21Hz  148.9s USED

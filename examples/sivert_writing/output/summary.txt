@@ -1,26 +1,30 @@
-======================================================================
-  Sivert writing-modality functional connectivity
-======================================================================
+========================================================================
+  Sivert writing-modality functional connectivity (native reader)
+========================================================================
   subjects   : ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6']
   conditions : ['handwriting', 'ipad', 'keyboard', 'remarkable']
   bandpass   : 0.01-0.1 Hz   alpha=0.05 (FDR-BH)
+  min length : 60s per run
 
-  CHANNEL COVERAGE
-    common channels across all 6 subjects: 15 (montages differ; see loading_log.txt for per-subject counts)
-    common set: S11_D11, S14_D14, S15_D15, S1_D1, S2_D1, S2_D2, S2_D4, S3_D1, S3_D4, S5_D3, S6_D5, S7_D8, S8_D6, S8_D8, S9_D9
+  MONTAGE COVERAGE (source-detector pairs)
+    full montage (union over all recordings) : 66 channels
+    common to every subject (intersection)   : 28 channels
+    group tests use channels in >= 50% of subjects
+    NOTE: recordings differ in sfreq (5-12 Hz), length and which channels
+    survived QC, so per-edge subject counts vary (see tables' 'n' column).
 
   PER-CONDITION group connectome (one-sample HbO, FC > 0)
-    handwriting  n=6 subj, 15 ch, 69/105 edges sig
-    ipad         n=6 subj, 15 ch, 95/105 edges sig
-    keyboard     n=6 subj, 15 ch, 63/105 edges sig
-    remarkable   n=6 subj, 15 ch, 97/105 edges sig
+    handwriting  n=6 subj, 49 ch, 504/1176 edges sig
+    ipad         n=6 subj, 49 ch, 1092/1176 edges sig
+    keyboard     n=6 subj, 49 ch, 810/1176 edges sig
+    remarkable   n=6 subj, 49 ch, 1125/1176 edges sig
 
   CONDITION CONTRASTS (paired HbO)
-    handwriting vs ipad        n=6 | FDR-sig=0  uncorrected p<0.05: 1/105  (min q=0.99)
-    handwriting vs keyboard    n=6 | FDR-sig=0  uncorrected p<0.05: 0/105  (min q=0.96)
-    handwriting vs remarkable  n=6 | FDR-sig=0  uncorrected p<0.05: 3/105  (min q=0.21)
-           ipad vs keyboard    n=6 | FDR-sig=0  uncorrected p<0.05: 1/105  (min q=0.98)
-           ipad vs remarkable  n=6 | FDR-sig=0  uncorrected p<0.05: 7/105  (min q=0.25)
-       keyboard vs remarkable  n=6 | FDR-sig=0  uncorrected p<0.05: 2/105  (min q=0.22)
+    handwriting vs ipad        | FDR-sig=0  uncorrected p<0.05: 48/1176  (min q=0.40)
+    handwriting vs keyboard    | FDR-sig=0  uncorrected p<0.05: 50/1176  (min q=0.43)
+    handwriting vs remarkable  | FDR-sig=0  uncorrected p<0.05: 56/1176  (min q=0.39)
+           ipad vs keyboard    | FDR-sig=0  uncorrected p<0.05: 25/1176  (min q=1.00)
+           ipad vs remarkable  | FDR-sig=0  uncorrected p<0.05: 96/1176  (min q=0.27)
+       keyboard vs remarkable  | FDR-sig=0  uncorrected p<0.05: 55/1176  (min q=0.48)
 
-======================================================================
+========================================================================

@@ -44,15 +44,20 @@ def average_correlations(
     ``axis``, then transforms back to *r*. ``matrices`` is typically a stack of
     shape ``(n_subjects, n, n)``.
     """
+    import warnings
+
     z = fisher_z(np.asarray(matrices, dtype=float))
-    if weights is None:
-        z_mean = np.nanmean(z, axis=axis)
-    else:
-        weights = np.asarray(weights, dtype=float)
-        shape = [1] * z.ndim
-        shape[axis] = weights.size
-        w = weights.reshape(shape)
-        z_mean = np.nansum(z * w, axis=axis) / np.nansum(
-            w * np.isfinite(z), axis=axis
-        )
+    with warnings.catch_warnings():
+        # All-NaN slices (an edge no subject has) legitimately average to NaN.
+        warnings.simplefilter("ignore", category=RuntimeWarning)
+        if weights is None:
+            z_mean = np.nanmean(z, axis=axis)
+        else:
+            weights = np.asarray(weights, dtype=float)
+            shape = [1] * z.ndim
+            shape[axis] = weights.size
+            w = weights.reshape(shape)
+            z_mean = np.nansum(z * w, axis=axis) / np.nansum(
+                w * np.isfinite(z), axis=axis
+            )
     return inverse_fisher_z(z_mean)
