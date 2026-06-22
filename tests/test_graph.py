@@ -2,8 +2,8 @@ import networkx as nx
 import numpy as np
 import pytest
 
-import cedanirs as cn
-from cedanirs.graph import graph_metrics, nodal_metrics, to_graph
+import nirconn as cn
+from nirconn.graph import graph_metrics, nodal_metrics, to_graph
 
 
 @pytest.fixture

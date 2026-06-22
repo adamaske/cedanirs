@@ -1,13 +1,13 @@
 """End-to-end example: SNIRF -> haemoglobin -> connectivity -> figures.
 
 This script demonstrates a complete functional-connectivity workflow with
-:mod:`cedanirs`:
+:mod:`nirconn`:
 
 1. Load a SNIRF file with MNE, detecting whether it holds raw intensity,
    optical density, or already-converted haemoglobin, and convert it to HbO/HbR
    concentration as needed (Beer-Lambert), keeping only long channels.
 2. Band-pass filter for resting-state functional connectivity (0.01-0.1 Hz).
-3. Wrap the HbO/HbR cube in a :class:`cedanirs.NirsTimeSeries`.
+3. Wrap the HbO/HbR cube in a :class:`nirconn.NirsTimeSeries`.
 4. Estimate connectivity (Pearson by default; ``--method`` selects any
    registered estimator), print a text report, save heatmap figures, and print
    graph-theory metrics.
@@ -37,7 +37,7 @@ from pathlib import Path
 
 import numpy as np
 
-import cedanirs as cn
+import nirconn as cn
 
 # Local-machine convenience fallback: a known sample-data directory on the
 # author's machine. Harmless (and silently skipped) anywhere else.
@@ -53,7 +53,7 @@ def load_snirf(
     h_freq: float = 0.1,
     long_only: bool = True,
 ) -> cn.NirsTimeSeries:
-    """Load a SNIRF file and return a HbO/HbR :class:`~cedanirs.NirsTimeSeries`.
+    """Load a SNIRF file and return a HbO/HbR :class:`~nirconn.NirsTimeSeries`.
 
     The file is read with MNE and routed through the right preprocessing steps
     depending on what stage the data is already at:
@@ -84,7 +84,7 @@ def load_snirf(
 
     Returns
     -------
-    cedanirs.NirsTimeSeries
+    nirconn.NirsTimeSeries
         A 3-D cube with chromophores ``["HbO", "HbR"]``.
     """
     try:
@@ -93,7 +93,7 @@ def load_snirf(
     except ImportError as exc:  # pragma: no cover - depends on the environment
         raise SystemExit(
             "This example needs MNE to read SNIRF files. Install the optional "
-            'I/O dependencies with:\n\n    pip install "cedanirs[io]"\n\n'
+            'I/O dependencies with:\n\n    pip install "nirconn[io]"\n\n'
             "(this pulls in mne and mne-nirs)."
         ) from exc
 

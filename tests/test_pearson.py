@@ -2,9 +2,9 @@ import numpy as np
 import pytest
 from scipy.stats import pearsonr
 
-import cedanirs as cn
-from cedanirs import ConnectivityResult
-from cedanirs.core.types import ConnectivityKind
+import nirconn as cn
+from nirconn import ConnectivityResult
+from nirconn.core.types import ConnectivityKind
 
 
 def test_known_correlation_structure(correlated_data, log):

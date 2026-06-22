@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 import xarray as xr
 
-from cedanirs import Chromophore, DataError, NirsTimeSeries
+from nirconn import Chromophore, DataError, NirsTimeSeries
 
 
 def test_from_2d_numpy_defaults():

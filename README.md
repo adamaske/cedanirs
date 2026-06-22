@@ -1,12 +1,13 @@
-# cedanirs
+# nirconn
 
 **Functional and effective connectivity analysis for fNIRS data** — estimation,
 statistical testing, graph-theoretic characterisation, visualisation and
 reporting, in one extensible package.
 
-> Status: early alpha. The architecture and public API are in place, with four
-> functional estimators shipped (Pearson, Spearman, partial correlation,
-> coherence) and effective methods slotting into the same framework.
+> Status: early alpha. The architecture and public API are in place, with seven
+> estimators shipped — six functional (Pearson, Spearman, partial correlation,
+> coherence, phase-locking value, wavelet coherence) and the first effective
+> method (Granger causality).
 
 ## Why
 
@@ -14,7 +15,7 @@ Analysing brain connectivity from functional near-infrared spectroscopy (fNIRS)
 spans a whole pipeline: from preprocessed haemoglobin time series, through a
 chosen connectivity estimator, to significance testing across hundreds of
 simultaneous channel pairs, network metrics, figures and a written report.
-cedanirs provides solid, reusable foundations for that pipeline and makes adding
+nirconn provides solid, reusable foundations for that pipeline and makes adding
 a new method a two-line affair — without reinventing numpy, scipy, networkx or
 matplotlib.
 
@@ -32,7 +33,7 @@ pip install -e .[effective] # + statsmodels (for upcoming effective methods)
 
 ```python
 import numpy as np
-import cedanirs as cn
+import nirconn as cn
 
 # data: (n_channels, n_times), already preprocessed (e.g. HbO, band-passed)
 data = np.random.default_rng(0).standard_normal((20, 600))
@@ -82,16 +83,34 @@ cn.connectivity(data, method="spearman")                         # rank correlat
 cn.connectivity(data, method="partial")                          # controls for all other channels
 cn.connectivity(data, method="coherence", sfreq=10.0,            # frequency-domain
                 fmin=0.01, fmax=0.1)
+cn.connectivity(data, method="plv", sfreq=10.0,                  # phase synchronization
+                fmin=0.01, fmax=0.1)                             #   (mode="pli" for phase-lag index)
+cn.connectivity(data, method="wavelet_coherence", sfreq=10.0,    # time-frequency coherence
+                fmin=0.01, fmax=0.1)
+cn.connectivity(data, method="granger", order=2)                 # effective (directed) causality
+```
+
+Measures with no analytic null — phase-locking value, coherence and wavelet
+coherence — get **p-values from Fourier phase-randomised surrogates** on demand:
+
+```python
+# 500 surrogates: each edge's p = fraction of surrogates as phase-locked as observed
+m = cn.connectivity(data, method="plv", sfreq=10.0, fmin=0.01, fmax=0.1,
+                    surrogates=500, surrogate_seed=0).matrix
+mask = m.significant(0.05, correction="fdr_bh")     # FDR over the empirical p-values
 ```
 
 Discover available methods:
 
 ```python
 cn.list_estimators()
-# [{'name': 'coherence',  'kind': 'functional', 'directed': False, 'domain': 'frequency'},
-#  {'name': 'partial',    'kind': 'functional', 'directed': False, 'domain': 'time'},
-#  {'name': 'pearson',    'kind': 'functional', 'directed': False, 'domain': 'time'},
-#  {'name': 'spearman',   'kind': 'functional', 'directed': False, 'domain': 'time'}]
+# [{'name': 'coherence',         'kind': 'functional', 'directed': False, 'domain': 'frequency'},
+#  {'name': 'granger',           'kind': 'effective',  'directed': True,  'domain': 'time'},
+#  {'name': 'partial',           'kind': 'functional', 'directed': False, 'domain': 'time'},
+#  {'name': 'pearson',           'kind': 'functional', 'directed': False, 'domain': 'time'},
+#  {'name': 'plv',               'kind': 'functional', 'directed': False, 'domain': 'time'},
+#  {'name': 'spearman',          'kind': 'functional', 'directed': False, 'domain': 'time'},
+#  {'name': 'wavelet_coherence', 'kind': 'functional', 'directed': False, 'domain': 'time-frequency'}]
 ```
 
 ## Group-level analysis, statistics & output
@@ -155,7 +174,7 @@ Exported alongside it: [`significant_edges.csv`](examples/output/significant_edg
 ## Architecture
 
 ```
-cedanirs/
+nirconn/
   api.py                  connectivity(data, method=...) — the one-liner entry point
   core/
     types.py              Chromophore, ConnectivityKind, Domain
@@ -166,10 +185,12 @@ cedanirs/
     registry.py           register_estimator / get / create / list (the plugin system)
   estimators/
     base.py               ConnectivityEstimator ABC (does the plumbing)
-    functional/           pearson, spearman, partial, coherence  (shipped)
-    effective/granger.py  Granger skeleton (extension template)
+    functional/           pearson, spearman, partial, coherence, plv,
+                          wavelet_coherence  (shipped)
+    effective/granger.py  Granger causality (directed; shipped)
   stats/                  Fisher-z, p-values, FDR/Bonferroni
     group.py              one_sample / two_sample / paired / regression / nbs
+    surrogates.py         Fourier phase-randomised surrogate-data tests
     _results.py           GroupStatResult / NBSResult
   graph/                  networkx-backed graph + topology metrics
   io/                     native h5py SNIRF reader (read_snirf / read_timeseries)
@@ -195,9 +216,9 @@ cedanirs/
 
 ```python
 import numpy as np
-from cedanirs import register_estimator
-from cedanirs.estimators.base import ConnectivityEstimator, EstimateOutput
-from cedanirs.core.types import ConnectivityKind
+from nirconn import register_estimator
+from nirconn.estimators.base import ConnectivityEstimator, EstimateOutput
+from nirconn.core.types import ConnectivityKind
 
 @register_estimator(name="cosine")
 class CosineSimilarity(ConnectivityEstimator):
@@ -215,17 +236,22 @@ class CosineSimilarity(ConnectivityEstimator):
 # cn.connectivity(data, method="cosine")
 ```
 
-Spearman, partial correlation and coherence ship built in — see
-`cedanirs/estimators/functional/` for production implementations.
+Spearman, partial correlation, coherence, phase-locking value and wavelet
+coherence ship built in — see `nirconn/estimators/functional/` for production
+implementations.
 
-See `cedanirs/estimators/effective/granger.py` for a worked directed-method
-template.
+For a directed (effective) method, see the shipped
+`nirconn/estimators/effective/granger.py`: same contract, `kind =
+ConnectivityKind.EFFECTIVE`, `directed = True`, and it returns an asymmetric
+matrix where `matrix[src, tgt]` is the influence of `src` on `tgt`.
 
 ## Roadmap
 
-- Functional: wavelet coherence, phase-locking value, mutual information
-  (Pearson, Spearman, partial correlation and coherence are already shipped).
-- Effective: Granger causality, transfer entropy, DCM.
+- Functional: mutual information, imaginary coherence (Pearson, Spearman,
+  partial correlation, coherence, phase-locking value and wavelet coherence are
+  already shipped).
+- Effective: transfer entropy, DCM (pairwise Granger causality is already
+  shipped).
 - Reliability: edgewise ICC and brain-fingerprinting / identifiability
   (group one/two-sample/paired/regression and NBS are already shipped).
 - Graph-metric group comparison at matched density; small-worldness vs nulls.

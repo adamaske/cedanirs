@@ -1,6 +1,6 @@
 """Group-level connectivity example: many recordings -> statistics -> poster.
 
-This demonstrates the cedanirs *group* workflow end to end. To keep it runnable
+This demonstrates the nirconn *group* workflow end to end. To keep it runnable
 from a single SNIRF file, it splits one recording into several equal time windows
 and treats each window as a "run" (subject), then asks the canonical group
 question: **which connections are reliably present across runs?** (a one-sample
@@ -31,7 +31,7 @@ from pathlib import Path
 
 import numpy as np
 
-import cedanirs as cn
+import nirconn as cn
 
 # Reuse the verified SNIRF loader and path resolution from the single-subject example.
 from example import load_snirf, resolve_path

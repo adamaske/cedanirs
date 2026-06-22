@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
-import cedanirs as cn
-from cedanirs.viz import plot_matrix
+import nirconn as cn
+from nirconn.viz import plot_matrix
 
 
 @pytest.fixture

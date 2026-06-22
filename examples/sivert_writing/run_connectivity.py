@@ -1,6 +1,6 @@
 """Functional-connectivity group analysis of the Sivert writing-modality study.
 
-Uses cedanirs' native SNIRF reader (h5py) — the files are already HbO/HbR, so no
+Uses nirconn' native SNIRF reader (h5py) — the files are already HbO/HbR, so no
 MNE/Beer-Lambert is needed. Channels are aligned across subjects on the FULL
 montage (union of source-detector pairs); group tests are NaN-aware where a
 recording lacks a channel.
@@ -33,7 +33,7 @@ import matplotlib
 matplotlib.use("Agg")
 import numpy as np
 
-import cedanirs as cn
+import nirconn as cn
 
 ROOT = Path(os.environ.get("SIVERT_ROOT", Path(__file__).parent))
 RESULTS = ROOT / "results"

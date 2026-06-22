@@ -1,6 +1,6 @@
 """Generate the committed example outputs in ``examples/output/``.
 
-Runs the full cedanirs pipeline on a deterministic **synthetic two-group study**
+Runs the full nirconn pipeline on a deterministic **synthetic two-group study**
 so the artifacts are fully reproducible from the repo (no private SNIRF needed):
 
 * 16 "control" + 16 "patient" subjects, 14 channels in two communities.
@@ -25,7 +25,7 @@ import matplotlib
 matplotlib.use("Agg")
 import numpy as np
 
-import cedanirs as cn
+import nirconn as cn
 
 OUT = Path(__file__).parent / "output"
 N_CHANNELS = 14

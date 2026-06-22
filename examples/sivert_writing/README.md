@@ -1,6 +1,6 @@
 # Case study: writing-modality functional connectivity
 
-A real-data application of `cedanirs` to an fNIRS study of four writing input
+A real-data application of `nirconn` to an fNIRS study of four writing input
 methods. It exercises the full group pipeline: per-subject run aggregation →
 group connectomes → within-subject condition contrasts → posters, tables and
 reports.
@@ -21,12 +21,12 @@ reports.
 
 ## Pipeline
 
-1. Read each run with cedanirs' **native h5py SNIRF reader** (`cn.read_timeseries`,
+1. Read each run with nirconn' **native h5py SNIRF reader** (`cn.read_timeseries`,
    no MNE — the files are already HbO/HbR) and band-pass **0.01–0.1 Hz**; runs
    shorter than 60 s are skipped.
 2. Pearson connectivity per run; **Fisher-z** average a subject's runs (union of
    channels) → one matrix per (subject, condition).
-3. Group analyses (`cedanirs`) on the **full montage** — channels present in ≥ 50 %
+3. Group analyses (`nirconn`) on the **full montage** — channels present in ≥ 50 %
    of subjects (49 channels, 1176 edges), NaN-aware where a recording lacks one:
    - **per condition** — one-sample edgewise test (FC > 0), FDR-BH;
    - **every condition pair** — paired (within-subject) contrast, FDR-BH.

@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 from scipy.stats import pearsonr
 
-from cedanirs.stats import (
+from nirconn.stats import (
     average_correlations,
     bonferroni_correction,
     correct_pvalues,
@@ -48,7 +48,7 @@ def test_correlation_pvalues_match_scipy():
 
 
 def test_correlation_pvalues_too_few_obs():
-    from cedanirs import DataError
+    from nirconn import DataError
 
     with pytest.raises(DataError):
         correlation_pvalues(np.eye(2), n_obs=2)

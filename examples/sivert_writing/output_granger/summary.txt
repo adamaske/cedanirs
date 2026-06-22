@@ -1,0 +1,30 @@
+========================================================================
+  Sivert writing-modality connectivity  --  Granger causality (effective)
+========================================================================
+  subjects   : ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6']
+  conditions : ['handwriting', 'ipad', 'keyboard', 'remarkable']
+  method     : granger  order=2  band=0.01-0.1 Hz
+  alpha=0.05 (FDR-BH)   min length=60s
+  within-subject run averaging: arithmetic mean GCI (diagonal=0)
+
+  MONTAGE COVERAGE
+    full montage (union)        : 66 channels
+    common to every subject     : 28 channels
+    group tests use channels in >= 50% of subjects
+    NOTE: directed analysis -- all N*(N-1) ordered pairs are tested.
+
+  PER-CONDITION group directed connectome (one-sample HbO, GCI > 0)
+    handwriting  n=6 subj, 49 ch, 2183/2352 directed edges sig
+    ipad         n=6 subj, 49 ch, 2198/2352 directed edges sig
+    keyboard     n=6 subj, 49 ch, 2126/2352 directed edges sig
+    remarkable   n=6 subj, 49 ch, 2244/2352 directed edges sig
+
+  CONDITION CONTRASTS (paired HbO, GCI difference)
+    handwriting vs ipad        | FDR-sig=0  uncorrected p<0.05: 214/2352  (min q=0.53)
+    handwriting vs keyboard    | FDR-sig=0  uncorrected p<0.05: 149/2352  (min q=0.08)
+    handwriting vs remarkable  | FDR-sig=0  uncorrected p<0.05: 132/2352  (min q=0.78)
+           ipad vs keyboard    | FDR-sig=0  uncorrected p<0.05: 69/2352  (min q=0.96)
+           ipad vs remarkable  | FDR-sig=0  uncorrected p<0.05: 128/2352  (min q=0.83)
+       keyboard vs remarkable  | FDR-sig=0  uncorrected p<0.05: 83/2352  (min q=0.98)
+
+========================================================================

@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
 
-import cedanirs as cn
-from cedanirs import ConnectivityMatrix, DataError
-from cedanirs.core.types import ConnectivityKind
+import nirconn as cn
+from nirconn import ConnectivityMatrix, DataError
+from nirconn.core.types import ConnectivityKind
 
 
 @pytest.fixture
@@ -69,7 +69,7 @@ def test_significant_mask_symmetric(matrix):
 def test_significant_without_pvalues_raises(correlated_data):
     data, labels = correlated_data
     m = cn.connectivity(data, channels=labels, compute_pvalues=False).matrix
-    from cedanirs import NotFittedError
+    from nirconn import NotFittedError
 
     with pytest.raises(NotFittedError):
         m.significant(0.05)

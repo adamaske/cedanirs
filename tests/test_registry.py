@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-import cedanirs as cn
-from cedanirs import (
+import nirconn as cn
+from nirconn import (
     EstimatorNotFoundError,
     PearsonCorrelation,
     create_estimator,
@@ -10,8 +10,8 @@ from cedanirs import (
     list_estimators,
     register_estimator,
 )
-from cedanirs.core.registry import is_registered
-from cedanirs.estimators.base import ConnectivityEstimator, EstimateOutput
+from nirconn.core.registry import is_registered
+from nirconn.estimators.base import ConnectivityEstimator, EstimateOutput
 
 
 def test_pearson_is_registered():
@@ -54,7 +54,7 @@ def test_register_custom_estimator_roundtrip():
         assert vals.shape == (3, 3)
         assert np.all(vals == 0.5)
     finally:
-        from cedanirs.core.registry import _REGISTRY
+        from nirconn.core.registry import _REGISTRY
 
         _REGISTRY.pop("_test_constant", None)
 

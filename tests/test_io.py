@@ -7,7 +7,7 @@ test is fully self-contained (no external data).
 import numpy as np
 import pytest
 
-import cedanirs as cn
+import nirconn as cn
 
 h5py = pytest.importorskip("h5py")
 

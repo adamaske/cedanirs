@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cedanirs"
+name = "nirconn"
 description = "Functional and effective connectivity analysis for fNIRS data"
 readme = "README.md"
 license = "MIT"
@@ -50,22 +50,22 @@ report = ["jinja2>=3.0"]
 dev = ["pytest>=7", "pytest-cov", "black", "ruff", "mypy"]
 docs = ["sphinx>=7", "furo", "myst-parser", "numpydoc"]
 all = [
-  "cedanirs[io,effective,report]",
+  "nirconn[io,effective,report]",
 ]
 
 [project.urls]
-Homepage = "https://github.com/adamaske/cedanirs"
-"Bug Tracker" = "https://github.com/adamaske/cedanirs/issues"
+Homepage = "https://github.com/adamaske/nirconn"
+"Bug Tracker" = "https://github.com/adamaske/nirconn/issues"
 
 [tool.setuptools.dynamic]
-version = { attr = "cedanirs._version.__version__" }
+version = { attr = "nirconn._version.__version__" }
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["cedanirs*"]
+include = ["nirconn*"]
 
 [tool.setuptools.package-data]
-cedanirs = ["py.typed"]
+nirconn = ["py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

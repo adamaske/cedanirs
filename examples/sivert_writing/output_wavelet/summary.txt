@@ -1,0 +1,28 @@
+========================================================================
+  Sivert writing-modality connectivity  --  wavelet coherence
+========================================================================
+  subjects   : ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6']
+  conditions : ['handwriting', 'ipad', 'keyboard', 'remarkable']
+  method     : wavelet_coherence  fmin=0.01 fmax=0.1 Hz  dj=0.5
+  alpha=0.05 (FDR-BH)   min length=60s
+
+  MONTAGE COVERAGE
+    full montage (union)        : 66 channels
+    common to every subject     : 28 channels
+    group tests use channels in >= 50% of subjects
+
+  PER-CONDITION group connectome (one-sample HbO, WTC > 0)
+    handwriting  n=6 subj, 49 ch, 1176/1176 edges sig
+    ipad         n=6 subj, 49 ch, 1176/1176 edges sig
+    keyboard     n=6 subj, 49 ch, 1176/1176 edges sig
+    remarkable   n=6 subj, 49 ch, 1176/1176 edges sig
+
+  CONDITION CONTRASTS (paired HbO, WTC difference)
+    handwriting vs ipad        | FDR-sig=0  uncorrected p<0.05: 32/1176  (min q=0.77)
+    handwriting vs keyboard    | FDR-sig=0  uncorrected p<0.05: 31/1176  (min q=0.99)
+    handwriting vs remarkable  | FDR-sig=0  uncorrected p<0.05: 16/1176  (min q=0.91)
+           ipad vs keyboard    | FDR-sig=0  uncorrected p<0.05: 43/1176  (min q=0.88)
+           ipad vs remarkable  | FDR-sig=0  uncorrected p<0.05: 34/1176  (min q=0.06)
+       keyboard vs remarkable  | FDR-sig=0  uncorrected p<0.05: 38/1176  (min q=0.66)
+
+========================================================================

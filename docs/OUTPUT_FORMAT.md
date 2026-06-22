@@ -1,6 +1,6 @@
-# cedanirs output format
+# nirconn output format
 
-This document specifies the formats cedanirs produces so other programs can parse
+This document specifies the formats nirconn produces so other programs can parse
 a complete analysis. It is a **stable contract**: column names, JSON keys and
 conventions below are what downstream tools should rely on.
 
@@ -26,8 +26,10 @@ All tables are `pandas.DataFrame`s; write them with `df.to_csv(path, index=False
 - **Edge identifier** (`edge` column): `"<source>--<target>"` for undirected
   (functional) results, `"<source>-><target>"` for directed (effective) results.
 - **Undirected vs directed**: functional methods (pearson, spearman, partial,
-  coherence) are symmetric — tables list each unordered pair **once** (upper
-  triangle). Directed methods list every ordered pair.
+  coherence, plv, wavelet_coherence) are symmetric — tables list each unordered
+  pair **once** (upper triangle). Directed/effective methods (e.g. granger,
+  where `matrix[src, tgt]` is the influence of `src` on `tgt`) list every
+  ordered pair.
 - **Statistics are computed in Fisher-z space and reported in r-units.** `effect`
   is in correlation/native units; group tests internally use `z = arctanh(r)`.
 - **p vs q**: `p` is the raw per-edge p-value; `q` is the multiple-comparison
@@ -83,7 +85,7 @@ The column set depends on whether the source is a **group statistic** or a
 | `fisher_z` | float | `arctanh(effect)` (variance-stabilised). |
 | `t` | float | Empty (not defined for a raw matrix). |
 | `df` | float | Empty. |
-| `p` | float | Analytic p-value (empty if the estimator computed none, e.g. coherence). |
+| `p` | float | Per-edge p-value: analytic (pearson/spearman/partial) or, when `surrogates=` was requested, an empirical phase-surrogate p-value (plv/coherence/wavelet_coherence). Empty if the estimator computed none. |
 | `q` | float | FDR-corrected p-value (empty if no p). |
 | `significant` | bool | `q <= alpha`. |
 | `direction` | string | `+` / `-`. |
@@ -277,6 +279,6 @@ JSON** (section 6); treat `.txt`/`.png` as presentation artifacts.
 
 ## 10. Versioning
 
-This format ships with cedanirs `__version__` (see `cedanirs._version`). Columns
+This format ships with nirconn `__version__` (see `nirconn._version`). Columns
 and JSON keys here are additive-stable within a major version; new optional
 columns/keys may be appended. Parse by name and tolerate unknown extra fields.

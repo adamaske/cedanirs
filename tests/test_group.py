@@ -4,9 +4,9 @@ import numpy as np
 import pytest
 from scipy import stats as sst
 
-import cedanirs as cn
-from cedanirs import ConnectivityMatrix, DataError, GroupConnectivity, Study
-from cedanirs.stats.transforms import fisher_z
+import nirconn as cn
+from nirconn import ConnectivityMatrix, DataError, GroupConnectivity, Study
+from nirconn.stats.transforms import fisher_z
 
 
 # --------------------------------------------------------------------------- #

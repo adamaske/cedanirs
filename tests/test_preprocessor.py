@@ -1,6 +1,6 @@
 import pytest
 
-from cedanirs import Preprocessor
+from nirconn import Preprocessor
 
 
 def test_preprocessor_defaults(log):
